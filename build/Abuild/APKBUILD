@@ -1,0 +1,29 @@
+pkgname=tftp-hpa
+pkgver=5.2
+pkgrel=0
+pkgdesc="Official tftp server"
+arch='all'
+url="https://www.kernel.org/pub/software/network/tftp/tftp-hpa/"
+license='BSD'
+subpackages="$pkgname-doc"
+source="https://www.kernel.org/pub/software/network/tftp/tftp-hpa/$pkgname-$pkgver.tar.gz
+        fix-common.patch
+    	qnx-sa-restart.patch"
+
+build() {
+  ./configure \
+    --build=$CBUILD \
+    --host=$CHOST \
+    --prefix=/usr \
+    --mandir=/usr/share/man
+  make
+}
+
+package() {
+  make INSTALLROOT="$pkgdir" install
+}
+sha512sums="
+d79c9bd41ccf573d44ae5c4d72726c27ed2f84c8fc4f7bb12e26c3deb9bee0ececcef8b4a49cca9c59da1673f1181e5187fd4ac0cbdc5285ca18f02c4788b89e  tftp-hpa-5.2.tar.gz
+40127e7ce276a2bc015255dbeef2665bfe8ff006b1e1d8fb79797e946d6030fd74606cffe0bea11eaad276a693f223faaaf1c1ccb5f276b40fdad40b366172b7  fix-common.patch
+4c30be9ea9566360b5e66e3a1b9bf685f7e628225e4240574bd07d858d83d278f1a3c5538481f8639ff13098ae49b33441c4f6086291d1a31f7523ddcd0ecc35  qnx-sa-restart.patch
+"
