@@ -1,6 +1,6 @@
 pkgname=tftp-hpa
 pkgver=5.2
-pkgrel=${pkgrel:-0}
+pkgrel=0
 pkgdesc="Official tftp server"
 arch='all'
 url="https://www.kernel.org/pub/software/network/tftp/tftp-hpa/"
@@ -22,7 +22,6 @@ build() {
 package() {
   make INSTALLROOT="$pkgdir" install
 }
-options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 d79c9bd41ccf573d44ae5c4d72726c27ed2f84c8fc4f7bb12e26c3deb9bee0ececcef8b4a49cca9c59da1673f1181e5187fd4ac0cbdc5285ca18f02c4788b89e  tftp-hpa-5.2.tar.gz
 40127e7ce276a2bc015255dbeef2665bfe8ff006b1e1d8fb79797e946d6030fd74606cffe0bea11eaad276a693f223faaaf1c1ccb5f276b40fdad40b366172b7  fix-common.patch
